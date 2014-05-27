@@ -1,8 +1,11 @@
 #!/bin/bash 
-
+#
+# Program to delete the unfinished or broken jobs 
+# 
 # check the input arguments 
 if [ $# -eq 0 ] ; then
-    echo 'error: Please mention the Job ID to be delted'
+    echo 'error: Please mention the Job ID to be deleted'
+    echo Usage: cluster_job_del.sh job_id  
     exit 1 
 fi 
 
