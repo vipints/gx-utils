@@ -12,7 +12,7 @@ if len(sys.argv) != 2:
     sys.exit()
 
 count = int(sys.argv[1])
-gigabyte = (0,) * (1024 * 1024 * 1024 / 8)
+gigabyte = (0,) * (1024 * 1024 * 1024 / 8) #Each element is allocated as double, which means 8 byte for each element
 
 data = gigabyte * count 
 
