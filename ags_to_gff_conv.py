@@ -25,6 +25,7 @@ def ags_to_gff(fname):
     gene_details = mat_info['genes'] #TODO automatically detect the struct identifier.
     
     for each_entry in gene_details: #Iterate over the matlab struct
+
         SOURCE = '.'
         #SOURCE = str(NP.atleast_1d(each_entry.strain)[0]) if each_entry.strain.size else SOURCE
         SOURCE = str(each_entry.gene_info.Source) if each_entry.gene_info.Source else SOURCE
@@ -36,7 +37,7 @@ def ags_to_gff(fname):
                     '.',
                     str(each_entry.strand),
                     '.',
-                    'ID='+str(each_entry.name)+';Name='+str(each_entry.name)]
+                    'ID=%s;Name=%s' % (each_entry.name, each_entry.name)]
         print '\t'.join(geneLine) ## gene line in GFF3 
         tidx = 0 
         for transcript in NP.atleast_1d(each_entry.transcripts):
@@ -64,7 +65,7 @@ def ags_to_gff(fname):
                     '.',
                     str(each_entry.strand),
                     '.',
-                    'ID='+str(transcript)+';Parent='+str(each_entry.name)]
+                    'ID=%s;Parent=%s' % (transcript, each_entry.name)]
             print '\t'.join(tLine) ## 
             if each_entry.utr5_exons.size:## UTR5 
                 try: 
@@ -79,7 +80,7 @@ def ags_to_gff(fname):
                                     '.',
                                     str(each_entry.strand),
                                     '.',
-                                    'Parent='+str(transcript)]
+                                    'Parent=%s' % transcript]
                                 print '\t'.join(u5Line)
                         else:
                             u5_start = int(each_entry.utr5_exons[tidx][0])
@@ -92,7 +93,7 @@ def ags_to_gff(fname):
                                     '.',
                                     str(each_entry.strand),
                                     '.',
-                                    'Parent='+str(transcript)]
+                                    'Parent=%s' % transcript]
                             print '\t'.join(u5Line)
                     except:
                         u5_start = int(each_entry.utr5_exons[0])
@@ -105,7 +106,7 @@ def ags_to_gff(fname):
                                 '.',
                                 str(each_entry.strand),
                                 '.',
-                                'Parent='+str(transcript)]
+                                'Parent=%s' % transcript]
                         print '\t'.join(u5Line)
                 except:
                     for eidx in range(len(each_entry.utr5_exons[tidx])):
@@ -117,7 +118,7 @@ def ags_to_gff(fname):
                                 '.',
                                 str(each_entry.strand),
                                 '.',
-                                'Parent='+str(transcript)]
+                                'Parent=%s' % transcript]
                         print '\t'.join(u5Line)
             if each_entry.cds_exons.size:## CDS 
                 try:
