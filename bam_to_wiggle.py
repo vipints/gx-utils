@@ -64,11 +64,11 @@ def main(bam_file, config_file=None, chrom='all', start=0, end=None,
         with closing(out_handle):
             chr_sizes, wig_valid = write_bam_track(bam_file, regions, config, out_handle,
                                                    normalize)
-        #try:
-        #    if wig_valid:
-        #        convert_to_bigwig(wig_file, chr_sizes, config, outfile)
-        #finally:
-        #    os.remove(wig_file)
+        try:
+            if wig_valid:
+                convert_to_bigwig(wig_file, chr_sizes, config, outfile)
+        finally:
+            os.remove(wig_file)
 
 @contextmanager
 def indexed_bam(bam_file, config):
