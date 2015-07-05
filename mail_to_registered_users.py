@@ -4,8 +4,8 @@ sending email to the registered oqtans users
 """
 
 import time 
-import psycopg2
 import smtplib
+import psycopg2
 from email.mime.text import MIMEText
 
 def compose_mail(recipient):
