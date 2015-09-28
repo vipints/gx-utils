@@ -1,6 +1,7 @@
 #!/usr/bin/env python 
 """
 check the free memmory available on the machine 
+
 usage: fill_mem_check.py <number-of-gigabytes>
 """
 
@@ -17,5 +18,5 @@ gigabyte = (0,) * (1024 * 1024 * 1024 / 8) #Each element is allocated as double,
 data = gigabyte * count 
 
 while True:
-    print "getting %d GB memory for use" % count  
+    print("getting %d GB memory for use" % count)
     time.sleep(1)
