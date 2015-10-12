@@ -5,7 +5,7 @@
 # check the input arguments 
 if [ $# -eq 0 ] ; then
     echo 'error: Please mention the Job ID to be deleted'
-    echo Usage: cluster_job_del.sh job_id  
+    echo 'Usage: cluster_job_del.sh <JOB_ID>'
     exit 1 
 fi 
 
@@ -41,6 +41,6 @@ fi
 for JOB_ID in `seq ${JOB_NUM_START} 1 ${JOB_NUM_STOP}`
 do 
     echo deleting job $JOB_ID
-    qdel $JOB_ID
+    qdel $JOB_ID ## depends on the job scheduler the deleting function will be different
 done 
 
